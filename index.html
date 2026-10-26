@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desert Pearl | Arabian Kitchen</title>
+
+<style>
+:root {
+    --green: #203f35;
+    --dark: #142b26;
+    --gold: #d7ad59;
+    --cream: #fbf6eb;
+    --white: #ffffff;
+    --text: #302f28;
+    --muted: #77776d;
+    --border: #e8dfcf;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button { cursor: pointer; }
+
+.topbar {
+    background: var(--dark);
+    color: var(--gold);
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+header {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.logo small {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+.btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 16px;
+    font-weight: bold;
+}
+
+.btn:hover { background: #315c4d; }
+
+.btn.gold {
+    background: var(--gold);
+    color: var(--dark);
+}
+
+.btn.light {
+    background: #eee9de;
+    color: var(--green);
+}
+
+.hero {
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    color: white;
+    background:
+        linear-gradient(90deg, #10251feF, #10251f99, #10251f20),
+        url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 55px 22px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.1;
+    margin: 18px 0;
+}
+
+.hero p {
+    max-width: 570px;
+    line-height: 1.8;
+    color: #f3eee4;
+}
+
+.hero .btn { margin-top: 15px; }
+
+.features {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 20px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.feature {
+    padding: 18px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.feature strong { color: var(--green); }
+
+.feature p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.heading small {
+    color: #9a742f;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.heading h2 {
+    color: var(--green);
+    font: 34px Georgia, serif;
+    margin: 8px 0;
+}
+
+.heading p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 12px;
+    margin: 22px 0;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8d4c9;
+    border-radius: 7px;
+    background: white;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid #d7ad5966;
+    border-color: var(--gold);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 24px;
+    align-items: start;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.food-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: .2s;
+}
+
+.food-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px #172b2a18;
+}
+
+.food-image {
+    height: 165px;
+    position: relative;
+    background: #e5e2d7;
+}
+
+.food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tag {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: 6px 9px;
+    border-radius: 20px;
+    background: #fffdf0ed;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.food-info {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+}
+
+.food-info h3 {
+    color: var(--green);
+    font-size: 16px;
+    margin: 0;
+}
+
+.food-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 40px;
+}
+
+.food-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.price {
+    color: var(--green);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.food-bottom .btn {
+    padding: 9px 11px;
+    font-size: 12px;
+}
+
+.cart {
+    position: sticky;
+    top: 90px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.cart h2 {
+    color: var(--green);
+    font: 26px Georgia, serif;
+    margin: 0 0 12px;
+}
+
+.empty {
+    padding: 18px 4px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.cart-item {
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+}
+
+.item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 9px;
+}
+
+.qty button {
+    border: 1px solid var(--border);
+    background: #f5f1e8;
+    border-radius: 5px;
+    padding: 5px 9px;
+    color: var(--green);
+}
+
+.qty .remove {
+    margin-left: auto;
+    background: #fae9e5;
+    color: #9b332a;
+    border: none;
+}
+
+.totals {
+    border-top: 1px solid var(--border);
+    padding-top: 9px;
+}
+
+.sum {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.sum.final {
+    color: var(--green);
+    font-size: 18px;
+    font-weight: bold;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.checkout {
+    border-top: 1px solid var(--border);
+    margin-top: 14px;
+    padding-top: 14px;
+}
+
+.checkout h3 {
+    color: var(--green);
+    font: 22px Georgia, serif;
+    margin: 0 0 12px;
+}
+
+.field { margin: 12px 0; }
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.checkout .btn {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.message {
+    display: none;
+    border-radius: 7px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+.note {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+footer {
+    margin-top: 35px;
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+footer strong {
+    font: 27px Georgia, serif;
+    color: var(--gold);
+}
+
+footer p {
+    color: #d9d6ca;
+    font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+    .layout { grid-template-columns: minmax(0, 1fr) 300px; }
+    .food-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+    .layout { grid-template-columns: 1fr; }
+    .cart { position: static; }
+    .features { grid-template-columns: 1fr; }
+    .hero { min-height: 360px; }
+}
+
+@media (max-width: 480px) {
+    .nav { padding: 12px; }
+    .logo { font-size: 21px; }
+    main { padding: 25px 13px; }
+    .controls { grid-template-columns: 1fr; }
+    .food-grid { grid-template-columns: 1fr; }
+    .food-image { height: 210px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    ARABIAN HOSPITALITY · FRESHLY PREPARED · MIDDLE EASTERN FLAVOURS
+</div>
+
+<header>
+    <nav class="nav">
+        <div class="logo">
+            Desert Pearl
+            <small>ARABIAN KITCHEN</small>
+        </div>
+
+        <button class="btn"
+            onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </button>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="eyebrow">A JOURNEY THROUGH ARABIAN FLAVOURS</div>
+        <h1>From our kitchen<br>to your table.</h1>
+        <p>
+            Discover fragrant mandi, delicious shawarma, smoky grilled kebabs,
+            creamy hummus and Arabian desserts prepared with care.
+        </p>
+        <button class="btn gold"
+            onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+            EXPLORE OUR MENU
+        </button>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature">
+        <strong>✦ Freshly prepared</strong>
+        <p>Food made to order with flavourful ingredients.</p>
+    </div>
+    <div class="feature">
+        <strong>✦ Arabian favourites</strong>
+        <p>Mandi, shawarma, grills, mezze and desserts.</p>
+    </div>
+    <div class="feature">
+        <strong>✦ Easy ordering</strong>
+        <p>Choose dishes, update your cart and enter delivery details.</p>
+    </div>
+</section>
+
+<main id="menu">
+    <div class="heading">
+        <small>OUR SIGNATURE SELECTION</small>
+        <h2>Explore the Menu</h2>
+        <p>Choose your favourites and add them to your order.</p>
+        <span id="resultCount"></span>
+    </div>
+
+    <div class="controls">
+        <input id="search" type="search"
+            placeholder="Search mandi, shawarma, kebab...">
+
+        <select id="category">
+            <option value="All">All Categories</option>
+            <option value="Mandi & Rice">Mandi & Rice</option>
+            <option value="Shawarma">Shawarma</option>
+            <option value="Grills">Grills</option>
+            <option value="Starters & Mezze">Starters & Mezze</option>
+            <option value="Breads & Sides">Breads & Sides</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Drinks">Drinks</option>
+        </select>
+    </div>
+
+    <div class="layout">
+        <section>
+            <div class="food-grid" id="foodGrid"></div>
+        </section>
+
+        <aside class="cart" id="cart">
+            <h2>Your Order</h2>
+            <div id="cartItems"></div>
+
+            <div class="totals">
+                <div class="sum">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+
+                <div class="sum">
+                    <span>Delivery Fee</span>
+                    <span id="delivery">₹0</span>
+                </div>
+
+                <div class="sum final">
+                    <span>Total</span>
+                    <span id="total">₹0</span>
+                </div>
+            </div>
+
+            <form class="checkout" id="checkout">
+                <h3>Delivery Details</h3>
+
+                <div class="field">
+                    <label for="customerName">Full Name *</label>
+                    <input id="customerName" required minlength="2"
+                        maxlength="80" placeholder="Enter your name">
+                </div>
+
+                <div class="field">
+                    <label for="phone">Phone Number *</label>
+                    <input id="phone" type="tel" required
+                        pattern="[0-9+() -]{10,18}"
+                        placeholder="Enter phone number">
+                </div>
+
+                <div class="field">
+                    <label for="address">Delivery Address *</label>
+                    <textarea id="address" required minlength="8"
+                        maxlength="300"
+                        placeholder="House number, street, area and landmark"></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="payment">Payment Preference *</label>
+                    <select id="payment" required>
+                        <option value="">Choose payment preference</option>
+                        <option>Cash on Delivery</option>
+                        <option>UPI - arrange payment separately</option>
+                    </select>
+                </div>
+
+                <button class="btn" type="submit">Submit Demo Order</button>
+
+                <button class="btn light" type="button" id="clearCart"
+                    style="width:100%;margin-top:8px">
+                    Clear Cart
+                </button>
+
+                <div id="message" class="message" role="status"></div>
+
+                <p class="note">
+                    Demo website: orders are not sent to a restaurant and
+                    no payment is collected. A backend and restaurant
+                    order system are required for live ordering.
+                </p>
+            </form>
+        </aside>
+    </div>
+</main>
+
+<footer>
+    <strong>Desert Pearl</strong>
+    <p>ARABIAN KITCHEN · Crafted with warmth and tradition</p>
+    <p>Online Food Ordering Website</p>
+</footer>
+
+<script>
+const foods = [
+    {
+        id: 1,
+        name: "Chicken Mandi",
+        category: "Mandi & Rice",
+        price: 320,
+        description: "Fragrant mandi rice served with tender chicken.",
+        image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 2,
+        name: "Mutton Mandi",
+        category: "Mandi & Rice",
+        price: 420,
+        description: "Slow-cooked mutton with aromatic rice.",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 3,
+        name: "Chicken Kabsa",
+        category: "Mandi & Rice",
+        price: 300,
+        description: "Spiced rice with chicken and Middle Eastern flavours.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 4,
+        name: "Chicken Shawarma Roll",
+        category: "Shawarma",
+        price: 150,
+        description: "Seasoned chicken, fresh vegetables and garlic sauce.",
+        image: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 5,
+        name: "Shawarma Plate",
+        category: "Shawarma",
+        price: 220,
+        description: "Chicken shawarma served with sides and garlic dip.",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 6,
+        name: "Mixed Grill Platter",
+        category: "Grills",
+        price: 450,
+        description: "A generous platter of grilled meats and sides.",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 7,
+        name: "Chicken Shish Kebab",
+        category: "Grills",
+        price: 280,
+        description: "Marinated chicken grilled with aromatic spices.",
+        image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 8,
+        name: "Grilled Chicken",
+        category: "Grills",
+        price: 350,
+        description: "Juicy grilled chicken with herbs and seasoning.",
+        image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 9,
+        name: "Hummus with Pita",
+        category: "Starters & Mezze",
+        price: 140,
+        description: "Smooth chickpea hummus with warm pita bread.",
+        image: "https://images.unsplash.com/photo-1577906096429-f73c2c312435?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 10,
+        name: "Falafel",
+        category: "Starters & Mezze",
+        price: 130,
+        description: "Crispy chickpea fritters with herbs and spices.",
+        image: "https://images.unsplash.com/photo-1593001874117-c99c800e3eb6?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 11,
+        name: "Fattoush Salad",
+        category: "Starters & Mezze",
+        price: 160,
+        description: "Fresh vegetables, herbs and crunchy pita pieces.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 12,
+        name: "Arabic Bread",
+        category: "Breads & Sides",
+        price: 40,
+        description: "Soft flatbread for dips, grills and rice dishes.",
+        image: "https://images.unsplash.com/photo-1608198093002-ad4e0054841b?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 13,
+        name: "Garlic Sauce",
+        category: "Breads & Sides",
+        price: 35,
+        description: "Creamy garlic dip for shawarma and grilled food.",
+        image: "https://images.unsplash.com/photo-1472476443507-c7a5948772fc?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 14,
+        name: "Kunafa",
+        category: "Desserts",
+        price: 160,
+        description: "A golden Middle Eastern dessert.",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 15,
+        name: "Baklava",
+        category: "Desserts",
+        price: 140,
+        description: "Layered pastry with a sweet, nutty filling.",
+        image: "https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 16,
+        name: "Mint Lemon Cooler",
+        category: "Drinks",
+        price: 90,
+        description: "Refreshing lemon drink with cool mint.",
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 17,
+        name: "Mango Juice",
+        category: "Drinks",
+        price: 100,
+        description: "A sweet, chilled mango drink.",
+        image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=85"
+    },
+    {
+        id: 18,
+        name: "Arabic Coffee",
+        category: "Drinks",
+        price: 80,
+        description: "A warm, aromatic coffee to finish your meal.",
+        image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=85"
+    }
+];
+
+const CART_KEY = "desertPearlCart";
+let cart = {};
+
+try {
+    cart = JSON.parse(localStorage.getItem(CART_KEY) || "{}") || {};
+} catch (error) {
+    cart = {};
+}
+
+const money = amount =>
+    "₹" + amount.toLocaleString("en-IN");
+
+function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function displayFoods() {
+    const searchText = document
+        .getElementById("search").value.trim().toLowerCase();
+
+    const selectedCategory =
+        document.getElementById("category").value;
+
+    const filtered = foods.filter(food => {
+        const matchesSearch =
+            food.name.toLowerCase().includes(searchText) ||
+            food.description.toLowerCase().includes(searchText) ||
+            food.category.toLowerCase().includes(searchText);
+
+        const matchesCategory =
+            selectedCategory === "All" ||
+            food.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    document.getElementById("resultCount").textContent =
+        filtered.length + " dishes available";
+
+    const grid = document.getElementById("foodGrid");
+
+    if (filtered.length === 0) {
+        grid.innerHTML = "<p>No dishes found. Try another search.</p>";
+        return;
+    }
+
+    grid.innerHTML = filtered.map(food => `
+        <article class="food-card">
+            <div class="food-image">
+                <img src="${food.image}"
+                     alt="${food.name}"
+                     loading="lazy"
+                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85'">
+                <span class="tag">${food.category}</span>
+            </div>
+
+            <div class="food-info">
+                <h3>${food.name}</h3>
+                <p>${food.description}</p>
+
+                <div class="food-bottom">
+                    <span class="price">${money(food.price)}</span>
+                    <button class="btn"
+                        onclick="addToCart(${food.id})">
+                        Add +
+                    </button>
+                </div>
+            </div>
+        </article>
+    `).join("");
+}
+
+function addToCart(id) {
+    cart[id] = Math.min(99, (Number(cart[id]) || 0) + 1);
+    saveCart();
+    displayCart();
+    showMessage("Dish added to your cart.", false);
+}
+
+function changeQuantity(id, amount) {
+    cart[id] = (Number(cart[id]) || 0) + amount;
+
+    if (cart[id] <= 0) {
+        delete cart[id];
+    }
+
+    if (cart[id] > 99) {
+        cart[id] = 99;
+    }
+
+    saveCart();
+    displayCart();
+}
+
+function removeItem(id) {
+    delete cart[id];
+    saveCart();
+    displayCart();
+}
+
+function displayCart() {
+    const entries = foods.filter(food =>
+        Number(cart[food.id]) > 0
+    );
+
+    const count = entries.reduce(
+        (sum, food) => sum + Number(cart[food.id]), 0
+    );
+
+    const subtotal = entries.reduce(
+        (sum, food) => sum + food.price * Number(cart[food.id]), 0
+    );
+
+    const delivery = subtotal > 0 ? 30 : 0;
+
+    document.getElementById("cartCount").textContent = count;
+    document.getElementById("subtotal").textContent = money(subtotal);
+    document.getElementById("delivery").textContent = money(delivery);
+    document.getElementById("total").textContent =
+        money(subtotal + delivery);
+
+    const container = document.getElementById("cartItems");
+
+    if (entries.length === 0) {
+        container.innerHTML =
+            '<div class="empty">Your cart is empty.<br>' +
+            'Add a dish to begin your order.</div>';
+        return;
+    }
+
+    container.innerHTML = entries.map(food => `
+        <div class="cart-item">
+            <div class="item-top">
+                <span>${food.name}</span>
+                <span>${money(food.price * cart[food.id])}</span>
+            </div>
+
+            <div class="muted">${money(food.price)} each</div>
+
+            <div class="qty">
+                <button type="button"
+                    onclick="changeQuantity(${food.id}, -1)">−</button>
+
+                <strong>${cart[food.id]}</strong>
+
+                <button type="button"
+                    ${cart[food.id] >= 99 ? "disabled" : ""}
+                    onclick="changeQuantity(${food.id}, 1)">+</button>
+
+                <button type="button" class="remove"
+                    onclick="removeItem(${food.id})">Remove</button>
+            </div>
+        </div>
+    `).join("");
+}
+
+function showMessage(message, error) {
+    const element = document.getElementById("message");
+
+    element.style.display = "block";
+    element.style.background = error ? "#fae7e3" : "#e4f1e6";
+    element.style.color = error ? "#96352b" : "#245447";
+    element.textContent = message;
+}
+
+document.getElementById("search").addEventListener(
+    "input", displayFoods
+);
+
+document.getElementById("category").addEventListener(
+    "change", displayFoods
+);
+
+document.getElementById("clearCart").addEventListener("click", () => {
+    cart = {};
+    saveCart();
+    displayCart();
+    showMessage("Your cart has been cleared.", false);
+});
+
+document.getElementById("checkout").addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!event.currentTarget.reportValidity()) {
+        return;
+    }
+
+    const entries = foods.filter(food =>
+        Number(cart[food.id]) > 0
+    );
+
+    if (entries.length === 0) {
+        showMessage("Please add food to your cart first.", true);
+        return;
+    }
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const payment = document.getElementById("payment").value;
+
+    if (!name || !phone || !address || !payment) {
+        showMessage("Please complete all delivery details.", true);
+        return;
+    }
+
+    const subtotal = entries.reduce(
+        (sum, food) => sum + food.price * cart[food.id], 0
+    );
+
+    const total = subtotal + 30;
+    const orderNumber = "DP" + Date.now().toString().slice(-7);
+
+    const orderItems = entries.map(food =>
+        food.name + " x " + cart[food.id] +
+        " = " + money(food.price * cart[food.id])
+    ).join("\n");
+
+    alert(
+        "DESERT PEARL - DEMO ORDER\n\n" +
+        "Reference: " + orderNumber + "\n\n" +
+        orderItems + "\n\n" +
+        "Subtotal: " + money(subtotal) + "\n" +
+        "Delivery: ₹30\n" +
+        "Total: " + money(total) + "\n\n" +
+        "Customer: " + name + "\n" +
+        "Phone: " + phone + "\n" +
+        "Address: " + address + "\n" +
+        "Payment preference: " + payment + "\n\n" +
+        "Demo only: this order was not sent to a restaurant."
+    );
+
+    cart = {};
+    saveCart();
+    displayCart();
+    event.currentTarget.reset();
+
+    showMessage(
+        "Demo order " + orderNumber +
+        " was created. No real order or payment was sent.",
+        false
+    );
+});
+
+displayFoods();
+displayCart();
+</script>
+
+</body>
+</html>
